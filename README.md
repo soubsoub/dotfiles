@@ -1,29 +1,20 @@
-# MySQL Admin Toolkit
+# Dotfiles for soubsoub
 
-Small set of shell scripts to manage MySQL privileges for teaching and lab environments.
+This repo contains:
 
-The scripts assume:
-- Authentication via `~/.my.cnf` (no password on the command line)
-- MySQL 8.x
-- You have admin rights (e.g., `root` or an admin user).
+- `bash/` – my Bash configuration
+- `git/` – my Git configuration
+- `ssh/` – SSH client config
+- `mysql-toolkit/` – small MySQL admin toolkit for teaching
+- `.github/` – GitHub Actions workflow
+- `install.sh` – installer (backups + symlinks)
 
-## Scripts
-
-- `bin/mysql-grant-schema.sh`  
-  Grant ALL PRIVILEGES on a schema to a user (host defaults to `%`).
-
-- `bin/mysql-revoke-schema.sh`  
-  Revoke ALL PRIVILEGES on a schema for a user (host defaults to `%`).
-
-- `bin/mysql-list-privs.sh`  
-  Show all grants for a given MySQL user@host.
-
-## Usage
+## Quick install
 
 ```bash
-./bin/mysql-grant-schema.sh mydb E_student_user
-./bin/mysql-revoke-schema.sh mydb E_student_user
-./bin/mysql-list-privs.sh E_student_user
+git clone git@github.com:soubsoub/dotfiles.git
+cd dotfiles
+./install.sh
 
 ## Install on a new machine
 
