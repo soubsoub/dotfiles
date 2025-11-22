@@ -6,4 +6,7 @@ if [ "$#" -ne 2 ]; then
     exit 1
 fi
 
-# revoke script…
+SCHEMA="$1"
+USER="$2"
+
+mysql -e "REVOKE ALL PRIVILEGES ON \`$SCHEMA\`.* FROM '${USER}'@'%'; FLUSH PRIVILEGES;"
