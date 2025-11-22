@@ -9,13 +9,6 @@ This repo contains:
 - `.github/` – GitHub Actions workflow
 - `install.sh` – installer (backups + symlinks)
 
-## Quick install
-
-```bash
-git clone git@github.com:soubsoub/dotfiles.git
-cd dotfiles
-./install.sh
-
 ## Install on a new machine
 
 ```bash
