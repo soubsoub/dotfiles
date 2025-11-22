@@ -1,18 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
-    echo "Usage: $0 <schema> <user> [host]"
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <schema> <user>" >&2
     exit 1
 fi
 
 SCHEMA="$1"
 USER="$2"
-HOST="${3:-%}"
 
-mysql <<EOF
-GRANT ALL PRIVILEGES ON \`${SCHEMA}\`.* TO '${USER}'@'${HOST}';
-FLUSH PRIVILEGES;
-EOF
+mysql -e "GRANT ALL PRIVILEGES ON \`$SCHEMA\`.* TO '${USER}'@'%'; FLUSH PRIVILEGES;"
 
-echo "Granted ALL PRIVILEGES on ${SCHEMA} to ${USER}@${HOST}"
