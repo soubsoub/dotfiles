@@ -5,4 +5,7 @@ Host *
     HashKnownHosts yes
     AddKeysToAgent yes
     IdentitiesOnly yes
+    KexAlgorithms curve25519-sha256
+    PubkeyAcceptedAlgorithms ssh-ed25519
+    HostKeyAlgorithms ssh-ed25519
 
