@@ -19,8 +19,11 @@ jobs:
       - name: Run ShellCheck
         run: |
           echo "Checking shell scripts..."
-          shellcheck install.sh || true
-          shellcheck mysql-toolkit/bin/*.sh || true
+          shopt -s nullglob
+          for f in install.sh mysql-toolkit/bin/*.sh; do
+              shellcheck "$f" || true
+          done
+
           
   yaml_lint:
     name: Validate YAML Files
