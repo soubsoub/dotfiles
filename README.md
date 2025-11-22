@@ -19,7 +19,7 @@ cd dotfiles
 ## Install on a new machine
 
 ```bash
-git clone git@github.com:YOURUSER/dotfiles.git
+git clone git@github.com:soubsoub/dotfiles.git
 cd dotfiles
 ./install.sh
 ```
