@@ -1,0 +1,8 @@
+name: Sync Dotfiles
+on: [push]
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Dotfiles synced"

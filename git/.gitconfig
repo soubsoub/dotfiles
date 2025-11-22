@@ -1,0 +1,17 @@
+[user]
+	name = soubsoub
+	email = soubsoub@users.noreply.github.com
+
+[core]
+    editor = nano
+
+[color]
+    ui = auto
+
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    cm = commit
+    lg = log --oneline --graph --decorate --all
+
