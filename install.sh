@@ -23,7 +23,7 @@ backup_if_exists() {
 echo "==> Installing Bash configuration"
 
 backup_if_exists "$HOME/.bashrc"
-ln -s "$REPO_DIR/bash/.bashrc" "$HOME/.bashrc"
+ln -sf "$REPO_DIR/bash/.bashrc" "$HOME/.bashrc"
 
 backup_if_exists "$HOME/.bash_aliases"
 ln -s "$REPO_DIR/bash/.bash_aliases" "$HOME/.bash_aliases"
@@ -67,6 +67,7 @@ for script in "$REPO_DIR/mysql-toolkit/bin/"*.sh; do
     backup_if_exists "$HOME/bin/$scriptname"
     ln -s "$script" "$HOME/bin/$scriptname"
 done
+chmod +x "$HOME/bin/"*.sh 2>/dev/null || true
 
 ###############################################
 # Done
@@ -74,3 +75,8 @@ done
 
 echo "==> Installation complete!"
 echo "Backup created at: $BACKUP"
+
+echo "==> Symlinks installed:"
+ls -l "$HOME" | grep bash
+ls -l "$HOME/bin"
+
