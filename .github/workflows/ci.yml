@@ -1,0 +1,45 @@
+name: Dotfiles CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint Shell Scripts
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install ShellCheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
+      - name: Run ShellCheck
+        run: |
+          echo "Checking shell scripts..."
+          shellcheck bash/*.sh || true
+          shellcheck mysql-toolkit/bin/*.sh || true
+          shellcheck install.sh || true
+
+  yaml_lint:
+    name: Validate YAML Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ibiqlik/action-yamllint@v3
+        with:
+          config_file: .yamllint.yml
+
+  secret_scan:
+    name: Secret Detection
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          fail: true
