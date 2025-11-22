@@ -2,7 +2,9 @@
 # -------------------------------------------------------------
 
 # prevents system binaries from overriding your personal scripts.
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+
+
 
 #safety for destructive commands
 
@@ -16,8 +18,8 @@ shopt -s cdspell
 
 # Loaded for *interactive* shells only
 case $- in
-    *i*) ;;
-      *) return;;
+    *i*) ;; # interactive: do nothing
+      *) set -o errexit -o pipefail -o nounset ;;
 esac
 
 # ==========================
