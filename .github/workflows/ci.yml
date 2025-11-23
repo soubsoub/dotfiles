@@ -30,17 +30,20 @@ jobs:
     name: Validate YAML Files
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Run yamllint on .github/workflows + root files
+      - name: Run yamllint
         uses: ibiqlik/action-yamllint@v3
         with:
-          file_or_dir: |
-            .github/workflows
-            .
+          file_or_dir: "."
           config_file: ".yamllint.yml"
+
 
 
   secret_scan:
