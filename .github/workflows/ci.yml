@@ -1,8 +1,9 @@
+---
 name: Dotfiles CI
 
 on:
-  push:
-  pull_request:
+  push: {}
+  pull_request: {}
 
 jobs:
   lint:
@@ -21,16 +22,17 @@ jobs:
           echo "Checking shell scripts..."
           shopt -s nullglob
           for f in install.sh mysql-toolkit/bin/*.sh; do
-              shellcheck "$f" || true
+            echo "Linting $f"
+            shellcheck "$f" || true
           done
 
-          
   yaml_lint:
     name: Validate YAML Files
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: ibiqlik/action-yamllint@v3
         with:
           config_file: .yamllint.yml
@@ -41,6 +43,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: trufflesecurity/trufflehog@main
         with:
           path: ./
