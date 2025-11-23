@@ -35,7 +35,8 @@ jobs:
 
       - uses: ibiqlik/action-yamllint@v3
         with:
-          config_file: .yamllint.yml
+          file_or_dir: "."
+          config_file: ".yamllint.yml"
 
   secret_scan:
     name: Secret Detection
